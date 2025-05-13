@@ -169,10 +169,10 @@
         let freelancerAccessToken = "{{ session('freelancer_access_token') }}";
         let projectApiUrl = @json($projectApiUrl);
         let freelancerApiBaseUrl = @json($freelancerApiBaseUrl);
-         console.log("freelancer Api BaseUrl is:", freelancerApiBaseUrl);
+        // //  console.log("freelancer Api BaseUrl is:", freelancerApiBaseUrl);
 
-        console.log("Token:", freelancerAccessToken);
-        console.log("Project API URL:", projectApiUrl);
+        // console.log("Token:", freelancerAccessToken);
+        // console.log("Project API URL:", projectApiUrl);
 
         async function fetchProjects(isInitialLoad = false) {
             await loadCountryCodes();

@@ -68,9 +68,8 @@ dd($freelancer_username);
                 </div>
             </div>
         </div>
-
-        <div class="shadow-bottom"></div>
         <ul class="list-unstyled menu-categories" id="dashboard">
+            
             <li class="menu {{ request()->routeIs('dashboard2') ? 'active' : '' }}">
                 <a href="{{ route('dashboard2') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
@@ -79,11 +78,6 @@ dd($freelancer_username);
                     </div>
                 </a>
             </li>
-
-            <li class="menu menu-heading">
-
-            </li>
-
             <li class="menu {{ request()->routeIs('skills.index') ? 'active' : '' }}">
                 <a href="{{route('skills.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
