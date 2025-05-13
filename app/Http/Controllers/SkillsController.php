@@ -28,23 +28,34 @@ class SkillsController extends Controller
     {
         $jobs = Helper::fetchAndStoreSkills();
 
-        // Log the response to verify the structure
         Log::info('Fetched Skills:', ['jobs' => $jobs]);
 
-        // Ensure the response is an array before proceeding
         if (is_array($jobs)) {
+            $user_id = auth()->id();
+
             foreach ($jobs as $job) {
-                Skills::create([
-                    'name' => $job['name'], 
-                    'user_id'=>auth()->id() // Ensure API returns 'name' key
-                ]);
+                $skillName = $job['name'];
+
+                // Check if this skill already exists for the user
+                $exists = Skills::where('name', $skillName)
+                                ->where('user_id', $user_id)
+                                ->exists();
+
+                if (!$exists) {
+                    Skills::create([
+                        'name' => $skillName,
+                        'user_id' => $user_id,
+                    ]);
+                }
             }
+
             return redirect()->route('skills.index')->with('message', 'Skills fetched and stored successfully.');
         } else {
             Log::error('Failed to fetch skills: Response was not an array.', ['response' => $jobs]);
             return redirect()->route('skills.index')->with('error', 'Failed to fetch skills: Invalid API response.');
         }
     }
+
 
 
     /**
